@@ -10,6 +10,7 @@ import {
   SlSocialLinkedin,
   SlSocialTwitter,
 } from "react-icons/sl";
+import { useNavigate } from "react-router-dom";
 
 // Validation Schema using Yup
 const schema = yup.object().shape({
@@ -34,10 +35,10 @@ const LoginPage = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
+  const navigate = useNavigate();
   const onSubmit = (data) => {
     console.log("Form Data:", data);
-    // Handle form submission here
+    navigate("/home");
   };
 
   return (
@@ -45,8 +46,8 @@ const LoginPage = () => {
       <div className="container d-flex align-items-center justify-content-md-between justify-content-center">
         {/* Left Section: Form */}
         <div className="login-form">
-          <h2>Sign In</h2>
-          <p>
+          <h2 className="text-center text-md-start">Sign In</h2>
+          <p className="text-center text-md-start">
             <span className="text-dark fw-bold me-2">New user?</span>
             <a href="/signup">Create an account</a>
           </p>

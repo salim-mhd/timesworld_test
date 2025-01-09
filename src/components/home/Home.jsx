@@ -38,12 +38,22 @@ const HomePage = () => {
   return (
     <div className="home">
       <Header onFilterChange={handleFilterChange} />
+      <div className="welcome-container">
+        <hr className="welcome-line-left" />
+        <div className="welcome">WELCOME</div>
+        <hr className="welcome-line-right" />
+      </div>
       <div className="mt-4">
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 col-md-8 order-2 order-md-1">
             <Slider />
           </div>
-          <div className="col-md-4"></div>
+          <div className="col-12 col-md-4 order-1 order-md-2 mb-md-0 mb-4 custom-height">
+            <div
+              className="border border-2 border-black"
+              style={{ height: "100%", backgroundColor: "#eee" }}
+            ></div>
+          </div>
         </div>
         <div className="row mt-4">
           {filteredCountries.slice(0, visibleCount).map((country) => (
@@ -53,8 +63,10 @@ const HomePage = () => {
           ))}
         </div>
         {visibleCount < filteredCountries.length && (
-          <div className="text-center mt-4">
-            <Button onClick={loadMore}>Load More</Button>
+          <div className="text-center mb-4">
+            <Button className="rounded-0 btn btn-secondary" onClick={loadMore}>
+              Load More
+            </Button>
           </div>
         )}
       </div>

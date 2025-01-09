@@ -55,7 +55,7 @@ const LoginPage = () => {
             {/* Email Field */}
             <Form.Group className="mb-3" controlId="formEmail">
               <Form.Control
-                className="border-2 border-black"
+                className="border-2 border-black rounded-0"
                 type="email"
                 placeholder="Username or email"
                 {...register("email")}
@@ -69,7 +69,7 @@ const LoginPage = () => {
             {/* Password Field */}
             <Form.Group className="mb-3" controlId="formPassword">
               <Form.Control
-                className="border-2 border-black"
+                className="border-2 border-black rounded-0"
                 type="password"
                 placeholder="Password"
                 {...register("password")}
@@ -81,16 +81,16 @@ const LoginPage = () => {
             </Form.Group>
 
             {/* Remember Me */}
-            <Form.Group className="my-3" controlId="formCheckbox">
+            <Form.Group className="my-3 rounded-0" controlId="formCheckbox">
               <Form.Check
-                className="custom-checkbox"
+                className="custom-checkbox rounded-0"
                 type="checkbox"
                 label="Keep me signed in"
                 {...register("remember")}
               />
             </Form.Group>
 
-            <Button variant="dark" type="submit" className="w-100">
+            <Button variant="dark" type="submit" className="w-100 rounded-0">
               Sign In
             </Button>
           </Form>

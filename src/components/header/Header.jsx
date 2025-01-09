@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 
 const Header = ({ onFilterChange }) => {
   const [activeFilter, setActiveFilter] = useState("All");
@@ -9,22 +12,40 @@ const Header = ({ onFilterChange }) => {
   };
 
   return (
-    <header className="d-flex justify-content-between align-items-center p-3 border-bottom">
-      <h1>Countries</h1>
-      <div>
-        {["All", "Asia", "Europe"].map((filter) => (
-          <button
-            key={filter}
-            className={`btn ${
-              activeFilter === filter ? "btn-primary" : "btn-light"
-            } mx-2`}
-            onClick={() => handleFilterClick(filter)}
-          >
-            {filter}
-          </button>
-        ))}
-      </div>
-    </header>
+    <Navbar
+      collapseOnSelect
+      expand="md"
+      className="d-flex justify-content-between m-0"
+    >
+      <Container className="my-0">
+        <Navbar.Brand href="#home" className="fs-5 fw-bold">
+          Countries
+        </Navbar.Brand>
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          className="border-0 fs-6"
+        />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="ms-auto">
+            {" "}
+            {/* Add ms-auto here */}
+            {["All", "Asia", "Europe"].map((filter) => (
+              <Nav.Link
+                key={filter}
+                className={`text-secondary ${
+                  activeFilter === filter
+                    ? "border-md border-2 border-black border-bottom text-dark"
+                    : "btn-light"
+                } mx-2`}
+                onClick={() => handleFilterClick(filter)}
+              >
+                {filter}
+              </Nav.Link>
+            ))}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 

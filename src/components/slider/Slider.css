@@ -1,50 +1,72 @@
-.slider-container {
-    position: relative;
-    width: 100%;
-    margin: auto;
+/* Custom Styling for Carousel Indicators */
+.custom-carousel .carousel-indicators [data-bs-target] {
+  width: 10px; /* Width of the dot */
+  height: 10px; /* Height of the dot */
+  background-color: #ffff; /* Default color for the dot */
+  border-radius: 50%; /* Makes the shape circular */
+  border: none; /* Removes any border */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition effect */
+}
+
+/* Active Dot Style */
+.custom-carousel .carousel-indicators .active {
+  background-color: #000; /* Active dot color */
+}
+
+/* Hover Effect for Indicators */
+.custom-carousel .carousel-indicators [data-bs-target]:hover {
+  background-color: #fff; /* Hover color for the dot */
+}
+
+.arrow-prev{
+  color: #000000;
+  padding-top: 355px;
+  padding-left: 475%;
+}
+
+.arrow-next{
+  color: #000000;
+  padding-top: 355px;
+  padding-right: 475%;
+}
+
+@media (max-width: 1200px) {
+  .arrow-prev{
+    padding-left: 450%;
   }
   
-  .custom-controls {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
+  .arrow-next{
+    padding-right: 450%;
+  }
+}
+
+@media (max-width: 992px) {
+  .arrow-prev{
+    padding-left: 400%;
   }
   
-  .prev-btn,
-  .next-btn {
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
+  .arrow-next{
+    padding-right: 400%;
+  }
+}
+
+@media (max-width: 768px) {
+  .arrow-prev{
+    padding-left: 350%;
   }
   
-  .prev-btn:hover,
-  .next-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+  .arrow-next{
+    padding-right: 350%;
+  }
+}
+
+@media (max-width: 576px) {
+  .arrow-prev{
+    padding-left: 300%;
   }
   
-  .custom-dots {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
+  .arrow-next{
+    padding-right: 300%;
   }
-  
-  .dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin: 0 5px;
-    background-color: gray;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .dot.active {
-    background-color: black;
-  }
-  
+}

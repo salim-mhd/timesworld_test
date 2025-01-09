@@ -1,63 +1,141 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { Form, Button } from "react-bootstrap";
 import "./Login.css";
+import {
+  SlSocialFacebook,
+  SlSocialGoogle,
+  SlSocialLinkedin,
+  SlSocialTwitter,
+} from "react-icons/sl";
 
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+// Validation Schema using Yup
+const schema = yup.object().shape({
+  email: yup
+    .string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  password: yup
+    .string()
+    .required("Password is required")
+    .min(8, "Password must be at least 8 characters long")
+    .matches(/[A-Z]/, "Password must include at least 1 uppercase letter")
+    .matches(/[0-9]/, "Password must include at least 1 number")
+    .matches(/[\W_]/, "Password must include at least 1 symbol"),
+});
 
-  const validateForm = () => {
-    const passwordRegex =
-      /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(password)) {
-      setError(
-        "Password must contain at least 8 characters, 1 uppercase letter, 1 number, and 1 symbol."
-      );
-      return false;
-    }
-    return true;
-  };
+const LoginPage = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      localStorage.setItem("isAuthenticated", true);
-      navigate("/home");
-    }
+  const onSubmit = (data) => {
+    console.log("Form Data:", data);
+    // Handle form submission here
   };
 
   return (
-    <div className="login-container">
-      <Form onSubmit={handleSubmit}>
-        <h3>Login</h3>
-        <Form.Group controlId="formEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+    <div className="login-page d-flex align-items-center justify-content-center">
+      <div className="container d-flex align-items-center justify-content-md-between justify-content-center">
+        {/* Left Section: Form */}
+        <div className="login-form">
+          <h2>Sign In</h2>
+          <p>
+            <span className="text-dark fw-bold me-2">New user?</span>
+            <a href="/signup">Create an account</a>
+          </p>
+          <Form onSubmit={handleSubmit(onSubmit)}>
+            {/* Email Field */}
+            <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Control
+                className="border-2 border-black"
+                type="email"
+                placeholder="Username or email"
+                {...register("email")}
+                isInvalid={!!errors.email}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.email?.message}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            {/* Password Field */}
+            <Form.Group className="mb-3" controlId="formPassword">
+              <Form.Control
+                className="border-2 border-black"
+                type="password"
+                placeholder="Password"
+                {...register("password")}
+                isInvalid={!!errors.password}
+              />
+              <Form.Control.Feedback type="invalid">
+                {errors.password?.message}
+              </Form.Control.Feedback>
+            </Form.Group>
+
+            {/* Remember Me */}
+            <Form.Group className="my-3" controlId="formCheckbox">
+              <Form.Check
+                className="custom-checkbox"
+                type="checkbox"
+                label="Keep me signed in"
+                {...register("remember")}
+              />
+            </Form.Group>
+
+            <Button variant="dark" type="submit" className="w-100">
+              Sign In
+            </Button>
+          </Form>
+
+          <div className="social-login mt-4">
+            <div className="line-container my-4">
+              <hr className="line" />
+              <span className="word">Or Sign In With</span>
+              <hr className="line" />
+            </div>
+
+            <div className="d-flex justify-content-center gap-3">
+              {/* Google Icon */}
+              <button className="social-icon">
+                <SlSocialGoogle size={18} />
+              </button>
+
+              {/* Facebook Icon */}
+              <button className="social-icon">
+                <SlSocialFacebook size={18} />
+              </button>
+
+              {/* LinkedIn Icon */}
+              <button className="social-icon">
+                <SlSocialLinkedin size={18} />
+              </button>
+
+              {/* Twitter Icon */}
+              <button className="social-icon">
+                <SlSocialTwitter size={18} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Section */}
+        <div className="login-illustration d-none d-md-block">
+          <img
+            src="https://img.freepik.com/free-vector/boy-holding-golden-key-background_1012-303.jpg?t=st=1736451416~exp=1736455016~hmac=f8fc48b6948c8f70e7d58a875753fa85b6b59d3d85def6aa255b7df08f95f509&w=900"
+            alt="Key"
+            className="key-icon"
           />
-        </Form.Group>
-        <Form.Group controlId="formPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-        {error && <p className="error-text">{error}</p>}
-        <Button variant="primary" type="submit">
-          Login
-        </Button>
-      </Form>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default Login;
+export default LoginPage;

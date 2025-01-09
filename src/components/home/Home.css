@@ -10,8 +10,7 @@
 
 .welcome-line-left {
   width: 100%;
-  border: none;
-  border-top: 3px solid black;
+  border: 2px #000 solid;
   margin-bottom: 30px;
 }
 
@@ -24,7 +23,7 @@
 .welcome-line-right {
   width: 100%;
   border: none;
-  border-bottom: 3px solid black;
+  border: 2px solid black;
   margin-top: 40px;
 }
 
@@ -57,12 +56,12 @@
 }
 
 .custom-height {
-  height: 400px; /* Default height for small screens */
+  height: 400px;
 }
 
 @media (max-width: 767px) {
   .custom-height {
-    height: 200px; /* Set a fixed height for smaller screens */
+    height: 200px;
     margin-bottom: 10px;
   }
 }

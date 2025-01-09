@@ -27,8 +27,6 @@ const Header = ({ onFilterChange }) => {
         />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
-            {" "}
-            {/* Add ms-auto here */}
             {["All", "Asia", "Europe"].map((filter) => (
               <Nav.Link
                 key={filter}

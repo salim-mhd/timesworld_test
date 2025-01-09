@@ -44,7 +44,7 @@ const countriesSlice = createSlice({
       .addCase(fetchCountries.fulfilled, (state, action) => {
         state.loading = false;
         state.countries = action.payload;
-        state.filteredCountries = action.payload.slice(0, 10); // Initial pagination
+        state.filteredCountries = action.payload.slice(0, 10);
       })
       .addCase(fetchCountries.rejected, (state, action) => {
         state.loading = false;

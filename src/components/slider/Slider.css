@@ -1,22 +1,19 @@
-/* Custom Styling for Carousel Indicators */
 .custom-carousel .carousel-indicators [data-bs-target] {
-  width: 10px; /* Width of the dot */
-  height: 10px; /* Height of the dot */
-  background-color: #ffff; /* Default color for the dot */
-  border-radius: 50%; /* Makes the shape circular */
-  border: none; /* Removes any border */
+  width: 10px;
+  height: 10px;
+  background-color: #ffff;
+  border-radius: 50%;
+  border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth transition effect */
+  transition: background-color 0.3s ease;
 }
 
-/* Active Dot Style */
 .custom-carousel .carousel-indicators .active {
-  background-color: #000; /* Active dot color */
+  background-color: #000;
 }
 
-/* Hover Effect for Indicators */
 .custom-carousel .carousel-indicators [data-bs-target]:hover {
-  background-color: #fff; /* Hover color for the dot */
+  background-color: #fff;
 }
 
 .arrow-prev{

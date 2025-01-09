@@ -13,7 +13,7 @@ const Slider = () => {
   return (
     <Carousel
       className="custom-carousel border border-2 border-black"
-      indicators={true} // Enable indicators
+      indicators
       nextIcon={
         <span className="arrow-next fs-6">
           <FaArrowRight />

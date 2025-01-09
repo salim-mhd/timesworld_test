@@ -6,6 +6,7 @@ import CountryCard from "../countryCard/CountryCard";
 import { Button } from "react-bootstrap";
 import Footer from "../footer/Footer";
 import "./Home.css";
+
 const HomePage = () => {
   const [countries, setCountries] = useState([]);
   const [filteredCountries, setFilteredCountries] = useState([]);
